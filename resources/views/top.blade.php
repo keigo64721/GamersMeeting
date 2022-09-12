@@ -1,3 +1,8 @@
+<head>
+    <link rel="stylesheet" href="{{ secure_asset('/css/top.css') }}" >
+</head>
+<body>
+    
 @extends('layouts.app')
 
 @section('content')
@@ -19,3 +24,4 @@
     </div>
 </div>
 @endsection
+</body>
