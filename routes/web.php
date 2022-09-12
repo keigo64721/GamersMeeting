@@ -23,6 +23,7 @@ Route::get('/top', [App\Http\Controllers\LogoutHomeController::class, 'index']);
 // ログイン時のルーティング
 Route::group(['middleware' => 'auth'], function(){
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::get('mypage', [App\Http\Controllers\MypageController::class, 'index']);
+    Route::get('mypage/setting', [App\Http\Controllers\HomeController::class, 'mypage_setting']);
+    Route::get('mypage', [App\Http\Controllers\HomeController::class, 'mypage']);
     
 });
