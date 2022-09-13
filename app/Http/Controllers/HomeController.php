@@ -34,6 +34,7 @@ class HomeController extends Controller
     
     public function mypage_setting()
     {
+        
         return  view('mypage_setting')->with('auth', Auth::user());
     }
 }

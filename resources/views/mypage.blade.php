@@ -16,18 +16,19 @@
             </div>
             
             <dev class="right-side">
+               
                 <p class="cont-name">ユーザー名 : {{ $auth->name }}</p>
-                <p class="cont-age">年齢 : </p>
-                <p class="cont-sex">性別: </p>
-                <p class="cont-game">ゲーム名 : </p>
-                <p class="cont-playstyle">プレイスタイル : </p>
+                <p class="cont-age">年齢 : {{ $auth->status->age }}</p>
+                <p class="cont-sex">性別: {{ $auth->status->sex }}</p>
+                <p class="cont-game">ゲーム名 : {{ $auth->status->game }}</p>
+                <p class="cont-playstyle">プレイスタイル : {{ $auth->status->playstyle }}</p>
                 <div class="playwith">
                     <p class="cont-playwith">一緒にやりたい人</p>
-                    <p class="text-playwith">aaaaa</p>
+                    <p class="text-playwith">{{ $auth->status->playwith }}</p>
                 </div>
                 <div class="comment">
                     <p class="cont-comment">コメント</p>
-                    <p class="text-comment">iiiii</p>
+                    <p class="text-comment">{{ $auth->status->comment }}</p>
                 </div>
                 
             </dev>
