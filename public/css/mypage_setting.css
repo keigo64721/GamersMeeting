@@ -63,3 +63,40 @@
 .btn_confirm {
     margin: 30px;
 }
+
+.cont-img {
+    width: 50px;
+    
+}
+
+input[type="file"] {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+}
+
+label.img {
+    height: 50px;
+    padding: 10px ;
+    margin: 0 0 10px;
+    background: #aaa;
+    color: #fff;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.fileclear {
+    display: none;
+    margin: 10px 0 0;
+    text-decoration: underline;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.js-upload-fileselect, .js-upload-filename, .js-upload-fileclear {
+    font-size: 13px;
+}
+
+.js-upload-filename{
+    width: 150px;
+}

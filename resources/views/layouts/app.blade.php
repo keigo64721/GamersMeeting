@@ -60,7 +60,7 @@
                                 メッセージ
                             </a>
                             <!--マッチング一覧-->
-                            <a class="navbar-message" href="{{ url('/matching') }}" >
+                            <a class="navbar-matching" href="{{ url('/matching') }}" >
                                 マッチング一覧
                             </a>
                             <!--通知ポップアップ-->

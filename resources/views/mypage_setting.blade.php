@@ -12,14 +12,37 @@
                 <!--imgタグでAuth::user()の画像を取得-->
                 <img src="{{ secure_asset('/img/バチンキー.png') }}" width=150px height=150px >
             </dev>
-            <a class="prof-setting" href="{{ url('/mypage/setting') }}">プロフィールを変更する</a>
+                
+            <!--画像インプット-->
+            <label class="img">
+                <input type="file" name="file" class="js-upload-file">
+                <p　class="js-upload-fileselect">画像を変更する</p>
+            </label>
+            <div class="js-upload-filename">ファイルが未選択です</div>
+            <div class="fileclear js-upload-fileclear">選択ファイルをクリア</div>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            <script>
+            $(function() {
+              $('.js-upload-file').on('change', function () { //ファイルが選択されたら
+                let file = $(this).prop('files')[0]; //ファイルの情報を代入(file.name=ファイル名/file.size=ファイルサイズ/file.type=ファイルタイプ)
+                $('.js-upload-filename').text(file.name); //ファイル名を出力
+                $('.js-upload-fileclear').show(); //クリアボタンを表示
+              });
+              $('.js-upload-fileclear').click(function() { //クリアボタンがクリックされたら
+                $('.js-upload-file').val(''); //inputをリセット
+                $('.js-upload-filename').text('ファイルが未選択です'); //ファイル名をリセット
+                $(this).hide(); //クリアボタンを非表示
+              });
+            });
+            </script>
+            
         </div>
         
         <dev class="right-side">
             <form action="posts/auth" method="POST">
                 <div class="edit">
                     <p class="cont-name">ユーザー名  </p>
-                    <input class="text-name" type='text' name='post[name]' value="{{ $auth->name }}">
+                        <input class="text-name" type='text' name='post[name]' value="{{ $auth->name }}">
                 </div>
                 <div class="edit">
                     <p class="cont-age">年齢</p>
