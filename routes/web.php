@@ -24,6 +24,7 @@ Route::get('/top', [App\Http\Controllers\LogoutHomeController::class, 'index']);
 Route::group(['middleware' => 'auth'], function(){
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('mypage/setting', [App\Http\Controllers\HomeController::class, 'mypage_setting']);
-    Route::get('mypage', [App\Http\Controllers\HomeController::class, 'mypage']);
+    Route::get('mypage', [App\Http\Controllers\HomeController::class, 'mypage'])->name('mypage');
+    Route::post('/posts/auth', [App\Http\Controllers\HomeController::class, 'set_status'])->name('mypage.update');
     
 });

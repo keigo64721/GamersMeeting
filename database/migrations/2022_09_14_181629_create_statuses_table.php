@@ -18,7 +18,7 @@ class CreateStatusesTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('age');
             $table->string('sex');
-            $table->string('game');
+            $table->unsignedBigInteger('game_id');
             $table->string('playstyle');
             $table->string('playwith');
             $table->string('comment');
@@ -26,6 +26,7 @@ class CreateStatusesTable extends Migration
             $table->timestamps();
             
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('game_id')->references('id')->on('games');
         });
     }
 
