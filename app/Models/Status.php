@@ -14,4 +14,9 @@ class Status extends Model
         return $this->belongsTo('App\Models\User');
     }
     
+    public function game()
+    {
+        return$this->belongsTo('App\Models\Game');
+    }
+    
 }
