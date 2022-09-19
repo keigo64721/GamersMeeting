@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Game;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Status;
+use App\Models\User;
+use App\Models\Swipe;
 
 class HomeController extends Controller
 {
@@ -28,23 +30,33 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->status == NULL)
-        {
-            $status = new Status();
-            $status->user_id = Auth::user()->id;
-            $status->age = 1;
-            $status->sex = "未選択";
-            $status->game_id = 1;
-            $status->playstyle = 0;
-            $status->playwith = "変更してください(変更しないと利用できません)";
-            $status->comment = "変更してください(変更しないと利用できません)";
-            $status->img_url = "/storage/images/18448.jpg";
-            $status->save();
-            // dd($status);
-        }
         
+        $playstyle = [
+            'ワイワイ楽しく',
+            '真剣に',
+            '気軽に',
+        ]; 
+        
+        // すでにスワイプした人の取得
+        $swipeUserIds = Swipe::where('from_user_id', \Auth::user()->id)->get()->pluck('to_user_id');
+        
+        // スワイプしていない人を一人取得
+        $user = User::where('id', '<>', \Auth::user()->id)->whereNotIn('id', $swipeUserIds)
+                                                          ->whereHas('Status', function($q){
+                                                                $q->where('game_id', \Auth::user()->status->game_id);  
+                                                            })
+                                                          ->whereHas('Status', function($q){
+                                                                $q->where('set', 1);  
+                                                            })
+                                                          ->first();
+        
+        
+        // $user = User::where('id', '<>', \Auth::user()->id)->first();
+        // dd($user);
         return view('home', [
-            'auth' => Auth::user(),    
+            'auth' => Auth::user(),   
+            'user' => $user,
+            'playstyle' => $playstyle,
         ]);
     }
     
@@ -112,6 +124,17 @@ class HomeController extends Controller
         $user->save();
         $user->status->save();
         
+        $defaultText = "変更してください(変更しないと利用できません)";
+        if($user->status->playwith == $defaultText || $user->status->comment == $defaultText || $user->status->playwith == NULL || $user->status->comment == NULL)
+        {
+            $user->status->set = 0;
+        }else{
+            $user->status->set = 1;
+        }
+        $user->status->save();
+        
         return redirect(route('mypage'));
     }
+    
+    
 }
