@@ -1,0 +1,129 @@
+.profile-card {
+    border: 1px solid;
+    width: 800px;
+    height: 400px;
+}
+
+.upper-side {
+    width: 800px;
+    height: 200px;
+    display: flex;
+}
+
+.lower-side {
+    width: 800px;
+    height: 200px;
+     display: flex;
+}
+
+.img {
+    margin: 20px;
+    border: 1px solid;
+}
+
+
+.name, .age, .game, .playstyle {
+    font-size: 20px;
+    margin-right: 50px;
+}
+
+.man-circle {
+    width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	background: #0000ff;
+}
+
+.woman-circle {
+    width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	background: #ff0000;
+}
+.nosex-circle {
+    width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	border: solid 1px;
+}
+
+.first-row {
+    display: flex;
+    height: 30px;
+    margin-bottom: 25px;
+    margin-top: 30px;
+    margin-left: 40px;
+}
+
+.second-row {
+    height: 30px;
+    margin-bottom: 25px;
+    margin-left: 40px;
+}
+
+.third-row {
+    height: 30px;
+    margin-bottom: 30px;
+    margin-left: 40px;
+}
+
+.cont-playwith, .cont-comment {
+    font-size: 20px;
+}
+
+.playwith {
+    width: 310px;
+    margin-left: 60px;
+    margin-right: 60px;
+}
+
+.comment {
+    width: 310px;
+    margin-right: 60px;
+}
+
+.text-playwith, .text-comment {
+    border: 1px solid;
+    font-size: 16px;
+    height: 130px;
+}
+
+.buttons {
+    width: 800px;
+    display: flex;
+}
+
+.good-img {
+    border-radius: 50%;
+    border: solid 5px;
+    border-color: #00C92E;
+}
+
+.bad-img {
+    border-radius: 50%;
+    border: solid 5px;
+    border-color: #fe0000;
+}
+
+.good {
+    margin-top: 50px;
+    margin-left: 186px;
+    margin-right: 187px;
+    
+}
+
+.bad {
+    margin-top: 50px;
+    margin-right: 186px;
+    
+}
+
+.good-button, .bad-button {
+    border: none;
+    background: transparent;
+    outline: none;
+}
+
+.good-button:focus, .bad-button:focus {
+    outline: none;
+}
