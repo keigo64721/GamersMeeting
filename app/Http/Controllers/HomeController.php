@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Status;
 use App\Models\User;
 use App\Models\Swipe;
+use App\Models\Notice;
 
 class HomeController extends Controller
 {
@@ -18,9 +19,12 @@ class HomeController extends Controller
      *
      * @return void
      */
+     
+     
     public function __construct()
     {
         $this->middleware('auth');
+        
     }
 
     /**
@@ -50,13 +54,13 @@ class HomeController extends Controller
                                                             })
                                                           ->first();
         
+        $notice = Notice::where('user_id', Auth::user()->id)->where('seen', false)->get();
         
-        // $user = User::where('id', '<>', \Auth::user()->id)->first();
-        // dd($user);
         return view('home', [
             'auth' => Auth::user(),   
             'user' => $user,
             'playstyle' => $playstyle,
+            'notices' => $notice,
         ]);
     }
     
@@ -71,9 +75,12 @@ class HomeController extends Controller
             '気軽に',
         ]; 
         
+        $notice = Notice::where('user_id', Auth::user()->id)->where('seen', false)->get();
+        
         return  view('mypage', [
             'auth' => Auth::user(),
             'playstyle' => $playstyle,
+            'notices' => $notice,
         ]);
     }
     
@@ -86,12 +93,13 @@ class HomeController extends Controller
             '気軽に',
         ];
         
-        
+        $notice = Notice::where('user_id', Auth::user()->id)->where('seen', false)->get();
         
         return  view('mypage_setting', [
             'auth' => Auth::user(),
             'games' => Game::all(),
             'playstyle' => $playstyle,
+            'notices' => $notice,
         ]);
     }
     
@@ -104,7 +112,6 @@ class HomeController extends Controller
         ]);
         $input = $request;
         $user = Auth::user();
-        // dd($input["file"]);
         
         if($input["file"] != NULL)
         {
@@ -136,5 +143,15 @@ class HomeController extends Controller
         return redirect(route('mypage'));
     }
     
-    
+    public function noticed_all(Request $request)
+    {
+        $notices = Notice::where('user_id', Auth::user()->id)->where('seen', false)->get();
+        //dd($notices);
+        foreach($notices as $notice){
+            $notice->seen = 1;
+            $notice->save();
+        }
+        
+        return redirect(route('home'));
+    }
 }
