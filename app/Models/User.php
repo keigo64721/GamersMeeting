@@ -44,7 +44,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     
-    public function status(){
+    public function status()
+    {
         return $this->hasOne('App\Models\Status');
     }
     
@@ -55,5 +56,15 @@ class User extends Authenticatable
             'email' => $email,
             'password' => Hash::make($password),
         ]);
+    }
+    
+    public function swipe()
+    {
+        return $this->hasMany('App\Models\Swipe');
+    }
+    
+    public function notice()
+    {
+        return $this->hasMany('App\Models\Notice');
     }
 }

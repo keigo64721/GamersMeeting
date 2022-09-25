@@ -55,8 +55,8 @@
 
 
 .window {
-
-	position:absolute;
+	overflow-y: scroll;
+	position: relative;
 	border: solid;
 	border: 1px solid;
 	width: 90vw;
@@ -77,3 +77,18 @@
 	cursor:pointer;
 }
 
+.notice-header {
+	display: flex;
+}
+
+h4 {
+	width: 50px;
+	margin-right: 40px;
+}
+
+.btn_confirm {
+	width: 140px;
+	height: 25px;
+	margin-top: 5px;
+
+}

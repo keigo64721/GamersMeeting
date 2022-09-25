@@ -69,8 +69,19 @@
                             <div class="overlay" >
                                 <div class="window" >
                                     <label class="close" for="pop-up">×</label>
-                                    <h4>内容</h4>
-                
+                                    <form action="{{ route('noticed.all') }}" method="POST" enctype="multipart/form-data">
+                                        @csrf
+    
+                                        <div class="notice-header">
+                                            <h4>通知</h4>
+                                            <input type="submit" class="btn_confirm"  name="btn_confirm" value="確認済みにする">
+                                        </div>
+                                    </form>
+                                    <div class="notice-messages">
+                                        @foreach($notices as $notice)
+                                        <p class="notice-message">{{ $notice->message}}</p>
+                                        @endforeach
+                                    </div>
                                 </div>
                             </div>
                             @endauth

@@ -28,5 +28,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('matching', [App\Http\Controllers\SwipeController::class, 'match']);
     Route::post('/posts/auth', [App\Http\Controllers\HomeController::class, 'set_status'])->name('mypage.update');
     Route::post('/swipes', [App\Http\Controllers\SwipeController::class, 'store'])->name('swipes.store');
+    Route::post('/noticedall', [App\Http\Controllers\HomeController::class, 'noticed_all'])->name('noticed.all');
+    Route::post('/noticed', [App\Http\Controllers\HomeController::class, 'noticed'])->name('noticed');
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 });
