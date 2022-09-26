@@ -64,7 +64,9 @@
                                 マッチング一覧
                             </a>
                             <!--通知ポップアップ-->
+                            
                             <label class="open" for="pop-up">通知</label>
+                            
                             <input type="checkbox" id="pop-up">
                             <div class="overlay" >
                                 <div class="window" >

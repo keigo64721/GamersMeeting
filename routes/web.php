@@ -32,3 +32,6 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('/noticed', [App\Http\Controllers\HomeController::class, 'noticed'])->name('noticed');
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 });
+
+Route::get('/linelogin', 'LineLoginController@lineLogin')->name('linelogin');
+Route::get('/callback', 'LineLoginController@callback')->name('callback');
