@@ -48,6 +48,8 @@ class SwipeController extends Controller
                         ->pluck('from_user_id');
         
         $i = 0;
+        $matchedUsers = NULL;
+        
         foreach($likedUserIds as $likedUserId){
             $matchedUser = Swipe::where('from_user_id', \Auth::user()->id)
                             ->where('to_user_id', $likedUserId)
@@ -58,6 +60,7 @@ class SwipeController extends Controller
         }
         
         $notice = Notice::where('user_id', Auth::user()->id)->where('seen', false)->get();
+        
         
         return view('match', [
             'matchedUsers' => $matchedUsers,   
