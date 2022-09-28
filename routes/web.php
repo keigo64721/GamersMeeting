@@ -30,6 +30,9 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('/swipes', [App\Http\Controllers\SwipeController::class, 'store'])->name('swipes.store');
     Route::post('/noticedall', [App\Http\Controllers\HomeController::class, 'noticed_all'])->name('noticed.all');
     Route::post('/noticed', [App\Http\Controllers\HomeController::class, 'noticed'])->name('noticed');
+    Route::get('post', [App\Http\Controllers\ChatsController::class, 'index']);
+    Route::get('messages', [App\Http\Controllers\ChatsController::class, 'fetchMessages']);
+    Route::post('messages', [App\Http\Controllers\ChatsController::class, 'sendMessage']);
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 });
 
