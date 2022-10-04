@@ -13,4 +13,9 @@ class ChatroomUser extends Model
         'user_id',
         'chatroom_id',
     ];
+    
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
 }

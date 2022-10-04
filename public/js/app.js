@@ -5317,6 +5317,9 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     chatroomId: {
       type: Number
+    },
+    userId: {
+      type: Number
     }
   },
   data: function data() {
@@ -5330,7 +5333,7 @@ __webpack_require__.r(__webpack_exports__);
       return this.text.length > 0;
     }
   },
-  created: function created() {
+  mounted: function mounted() {
     var _this = this;
 
     this.fetchMessages();
@@ -5341,6 +5344,7 @@ __webpack_require__.r(__webpack_exports__);
         chatroomId: e.chatroomId
       });
     });
+    window.addEventListener("scroll", this.pageScroll);
   },
   methods: {
     fetchMessages: function fetchMessages(chatroomId) {
@@ -5363,6 +5367,15 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         _this3.text = "";
       });
+      window.addEventListener("scroll", this.pageScroll);
+    },
+    pageScroll: function pageScroll() {
+      // let elm = document.getElementById('list');
+      // // let bottom = elm.scrollHeight;
+      // // console.log(elm.scrollHeight);
+      // elm.scrollIntoView(false);
+      var obj = document.getElementById('list');
+      obj.scrollTop = obj.scrollHeight;
     }
   }
 });
@@ -5385,17 +5398,38 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_c("p", [_vm._v("チャットルーム：" + _vm._s(_vm.chatroomId))]), _vm._v(" "), _c("ul", _vm._l(_vm.messages, function (message, key) {
-    return _c("li", {
-      key: key
-    }, [_c("strong", [_vm._v(_vm._s(message.user.name))]), _vm._v("\n            " + _vm._s(message.message) + "\n        ")]);
-  }), 0), _vm._v(" "), _c("input", {
+  return _c("div", [_c("div", {
+    staticClass: "ul-body",
+    attrs: {
+      id: "list"
+    }
+  }, _vm._l(_vm.messages, function (message, key) {
+    return _c("div", {
+      key: key,
+      staticClass: "li-body"
+    }, [_vm.userId === message.user.id ? _c("div", {
+      staticClass: "my-message"
+    }, [_c("div", {
+      staticClass: "message-body mine"
+    }, [_vm._v(_vm._s(message.message))]), _c("br"), _vm._v(" "), _c("div", {
+      staticClass: "message-name mine"
+    }, [_vm._v(_vm._s(message.user.name))]), _c("br")]) : _vm._e(), _vm._v(" "), _vm.userId !== message.user.id ? _c("div", {
+      staticClass: "other-message"
+    }, [_c("div", {
+      staticClass: "message-body other"
+    }, [_vm._v(_vm._s(message.message))]), _c("br"), _vm._v(" "), _c("div", {
+      staticClass: "message-name"
+    }, [_vm._v(_vm._s(message.user.name))]), _c("br")]) : _vm._e()]);
+  }), 0), _vm._v(" "), _c("div", {
+    staticClass: "input-form"
+  }, [_c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
       value: _vm.text,
       expression: "text"
     }],
+    staticClass: "input",
     domProps: {
       value: _vm.text
     },
@@ -5412,7 +5446,7 @@ var render = function render() {
     on: {
       click: _vm.postMessage
     }
-  }, [_vm._v("送信")])]);
+  }, [_vm._v("送信")])])]);
 };
 
 var staticRenderFns = [];

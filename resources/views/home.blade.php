@@ -10,27 +10,38 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                     @if($auth->status->set == 0 || $auth->status->set == NULL)
+                
+                @if($auth->status->set == 0 || $auth->status->set == NULL)
+                    <div class="card">
+                        <div class="card-header">{{ __('Dashboard') }}</div>
+        
+                        <div class="card-body">
+                            @if (session('status'))
+                                <div class="alert alert-success" role="alert">
+                                    {{ session('status') }}
+                                </div>
+                            @endif
+        
+                            <div class="contents">
+                                {{ __('ログインしました！') }}
+                               
+                                    <div class="set_to_mypage">
+                                        <p class="message_to_setting">初期設定が済んでいません</p>
+                                        <a class="to_mypage" href="{{ url('/mypage') }}">プロフィールを設定する</a>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                @else
+                    @if($user === NULL)
                         <div class="card">
                             <div class="card-header">{{ __('Dashboard') }}</div>
             
-                                <div class="card-body">
-                                    @if (session('status'))
-                                        <div class="alert alert-success" role="alert">
-                                            {{ session('status') }}
-                                        </div>
-                                    @endif
-                
-                                    <div class="contents">
-                                        {{ __('ログインしました！') }}
-                                       
-                                            <div class="set_to_mypage">
-                                                <p class="message_to_setting">初期設定が済んでいません</p>
-                                                <a class="to_mypage" href="{{ url('/mypage') }}">プロフィールを設定する</a>
-                                            </div>
-                                    </div>
+                            <div class="card-body">
+                                <div class="contents">
+                                    {{ __('マッチング相手がいません') }}
                                 </div>
-                    
+                            </div>
                         </div>
                     @else
                         <div class="profile-card">
@@ -77,7 +88,7 @@
                                 <input type="hidden" name="is_like" value="1" >
                                 <div class="good">
                                     <button class="good-button" type="submit">
-                                        <img id="goodpost" class="good-img"  src="/storage/images/ハート.jpg" width=120px height=120px>
+                                        <img id="goodpost" class="good-img"  src="/img/ハート.jpg" width=120px height=120px>
                                     </button>
                                 </div>
                             </form>
@@ -87,12 +98,13 @@
                                 <input type="hidden" name="is_like" value="0" >
                                 <div id="badpost" class="bad" >
                                     <button class="bad-button" type="submit">
-                                        <img class="bad-img"  src="/storage/images/バツ.jpeg" width=120px height=120px>
+                                        <img class="bad-img"  src="/img/バツ.jpeg" width=120px height=120px>
                                     </button>
                                 </div>
                             </form>
                         </div>
                     @endif
+                @endif
             </div>
         </div>
         
