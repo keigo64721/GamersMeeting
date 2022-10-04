@@ -52,7 +52,7 @@ export default {
                 chatroomId: e.chatroomId
             });
         });
-       window.addEventListener("scroll", this.pageScroll);
+       this.pageSchroll();
     },
     methods: {
         fetchMessages(chatroomId) {
@@ -67,7 +67,7 @@ export default {
             }).then(response => {
                 this.text = "";
             });
-            window.addEventListener("scroll", this.pageScroll);
+            this.pageSchroll();
         },
         pageScroll(){
             // let elm = document.getElementById('list');

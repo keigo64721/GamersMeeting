@@ -5344,7 +5344,7 @@ __webpack_require__.r(__webpack_exports__);
         chatroomId: e.chatroomId
       });
     });
-    window.addEventListener("scroll", this.pageScroll);
+    this.pageSchroll();
   },
   methods: {
     fetchMessages: function fetchMessages(chatroomId) {
@@ -5367,7 +5367,7 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         _this3.text = "";
       });
-      window.addEventListener("scroll", this.pageScroll);
+      this.pageSchroll();
     },
     pageScroll: function pageScroll() {
       // let elm = document.getElementById('list');
