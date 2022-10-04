@@ -1,5 +1,10 @@
 <head>
+    <meta charset="UTF-8">
+    <title>チャット</title>
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{{ secure_asset('/css/match.css') }}" >
+    <link rel="stylesheet" href="{{ secure_asset('/css/chatroom.css') }}" >
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>    
     
@@ -21,7 +26,7 @@
                                 </div>
                                 <div class="text-side">
                                     <div class="name">
-                                        <strong class="name-text">{{ $matchedUser->toUser->name }}</strong>
+                                        <p class="name-text">{{ $matchedUser->toUser->name }}</p>
                                     </div>
                                     <div class="latest-message">
                                         <!--４０文字を超えるメッセージなら...を加える処理が必要-->
@@ -70,8 +75,14 @@
             <!----test---->
         </div>
         <div class="right-side">
+            <div class="user-name">{{ $partner->user->name }}</div>
+            <div id="app">
+                    <example-component :chatroom-id='@json($chatroom_id)'  :user-id='@json($auth->id)' ></example-component>
+            </div>
             
+            <script src="{{ mix('js/app.js') }}"></script> 
         </div>
+        
     </div>
             
     @endsection

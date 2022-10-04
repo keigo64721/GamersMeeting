@@ -9,8 +9,6 @@ class chatroom extends Model
 {
     use HasFactory;
     
-    public function 
-    
     public function chatroom_user()
     {
         return $this->hasMany('App\Models\ChatroomUser');

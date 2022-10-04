@@ -106,7 +106,7 @@ class HomeController extends Controller
     public function set_status(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required', 
+            'name' => 'required|max:10', 
             'playwith' => 'required|max:255',
             'comment' => 'required|max:255'
         ]);
@@ -146,12 +146,19 @@ class HomeController extends Controller
     public function noticed_all(Request $request)
     {
         $notices = Notice::where('user_id', Auth::user()->id)->where('seen', false)->get();
-        //dd($notices);
         foreach($notices as $notice){
             $notice->seen = 1;
             $notice->save();
         }
         
         return redirect(route('home'));
+    }
+    
+    public function noticed(Request $request){
+        $notice = Notice::where('id', $request->id)->first();
+        $notice->seen = 1;
+        $notice->save();
+        
+        return redirect(route('matching'));
     }
 }

@@ -23,7 +23,7 @@
     
 </head>
 <body>
-    <div id="app">
+    
         
         
         
@@ -55,13 +55,9 @@
                     <ul class="navbar-nav " id="left-nav">
                         <div　class="menu">
                             @auth
-                            <!--メッセージ-->
-                            <a class="navbar-message" href="{{ url('/message') }}" >
-                                メッセージ
-                            </a>
                             <!--マッチング一覧-->
                             <a class="navbar-matching" href="{{ url('/matching') }}" >
-                                マッチング一覧
+                                マッチング一覧・メッセージ
                             </a>
                             <!--通知ポップアップ-->
                             
@@ -71,19 +67,24 @@
                             <div class="overlay" >
                                 <div class="window" >
                                     <label class="close" for="pop-up">×</label>
-                                    <form action="{{ route('noticed.all') }}" method="POST" enctype="multipart/form-data">
+                                    <form action="{{ route('noticed.all') }}" method="POST" >
                                         @csrf
     
                                         <div class="notice-header">
                                             <h4>通知</h4>
-                                            <input type="submit" class="btn_confirm"  name="btn_confirm" value="確認済みにする">
+                                            <input type="submit" class="btn-confirmall"  name="btn_confirm" value="確認済みにする">
                                         </div>
                                     </form>
-                                    <div class="notice-messages">
-                                        @foreach($notices as $notice)
-                                        <p class="notice-message">{{ $notice->message}}</p>
-                                        @endforeach
-                                    </div>
+                                    @foreach($notices as $notice)
+                                        <div class="notice-messages">
+                                            <p class="notice-message-body">{{ $notice->message}}</p>
+                                            <form action="{{ route('noticed') }}" method="POST" >
+                                                @csrf
+                                                <input type="hidden" name="id" value={{ $notice->id }}>
+                                                <input type="submit" class="btn-confirm"  name="btn_confirm" value="確認する">
+                                            </form>
+                                        </div>
+                                    @endforeach
                                 </div>
                             </div>
                             @endauth
@@ -116,8 +117,8 @@
                                     <!--マイページボタン-->
                                     <a class="dropdown-item" href="{{ url('/mypage') }}" >マイページ</a>
                                     
-                                    <!--設定ボタン-->
-                                    <a class="dropdown-item" href="{{ url('/setting') }}" >設定</a>
+                                    <!--設定ボタン（設定項目を増やしたら追加する予定）-->
+                                    <!--<a class="dropdown-item" href="{{ url('/setting') }}" >設定</a>-->
                                     
                                     <!--ログアウトボタン-->
                                     <a class="dropdown-item" href="{{ route('logout') }}"
@@ -143,6 +144,6 @@
         <main class="py-4">
             @yield('content')
         </main>
-    </div>
+    
 </body>
 </html>

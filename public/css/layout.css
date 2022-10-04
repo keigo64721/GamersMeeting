@@ -87,13 +87,21 @@ h4 {
 	margin-right: 40px;
 }
 
-.btn_confirm {
+.notice-messages {
+	display: flex;
+}
+
+.btn-confirmall {
 	width: 140px;
 	height: 25px;
 	margin-top: 5px;
-
 }
 
+.btn-confirm{
+	width: 80px;
+	height: 25px;
+	margin-left: 10px;
+}
 
 
 

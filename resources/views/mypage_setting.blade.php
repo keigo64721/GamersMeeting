@@ -58,7 +58,7 @@
                     <div class="edit">
                         <p class="cont-name">ユーザー名  </p>
                         
-                            @if($errors->has('name'))
+                            @if($errors->has('name') || $errors->has('playwith') || $errors->has('comment'))
                                 <input class="text-name" type='text' name='name' value="{{ old('name') }}" >
                             @else
                                 <input class="text-name" type='text' name='name' value="{{ $auth->name }}" >
@@ -127,7 +127,7 @@
                     <div class="edit">
                         <div class="playwith">
                             <p class="cont-playwith">一緒にやりたい人</p>
-                            @if($errors->has('playwith'))
+                            @if($errors->has('name') || $errors->has('playwith') || $errors->has('comment'))
                                 <textarea class="text-playwith"  name='playwith' >{{ old('playwith') }}</textarea>
                             @else
                                 <textarea class="text-playwith"  name='playwith' >{{ $auth->status->playwith }}</textarea>
@@ -138,7 +138,7 @@
                     <div class="edit">
                         <div class="comment">
                             <p class="cont-comment">コメント</p>
-                            @if($errors->has('comment'))
+                            @if($errors->has('name') || $errors->has('playwith') || $errors->has('comment'))
                                 <textarea class="text-comment" type='text' name='comment' >{{ old('comment') }}</textarea>
                             @else
                                 <textarea class="text-comment" type='text' name='comment' >{{ $auth->status->comment }}</textarea>
