@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\mypage_settingRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Game;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Game;
 use App\Models\Status;
 use App\Models\User;
 use App\Models\Swipe;
@@ -19,12 +18,16 @@ class HomeController extends Controller
      *
      * @return void
      */
-     
-     
+    // プレイスタイルの連想配列を定義
+    public $playstyle= [
+            'ワイワイ楽しく',
+            '真剣に',
+            '気軽に',
+        ];
+      
     public function __construct()
     {
         $this->middleware('auth');
-        
     }
 
     /**
@@ -34,13 +37,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        
-        $playstyle = [
-            'ワイワイ楽しく',
-            '真剣に',
-            '気軽に',
-        ]; 
-        
         // すでにスワイプした人の取得
         $swipeUserIds = Swipe::where('from_user_id', \Auth::user()->id)->get()->pluck('to_user_id');
         
@@ -53,33 +49,25 @@ class HomeController extends Controller
                                                                 $q->where('set', 1);  
                                                             })
                                                           ->first();
-        
+        // 自分への未読通知を取得
         $notice = Notice::where('user_id', Auth::user()->id)->where('seen', false)->get();
         
         return view('home', [
             'auth' => Auth::user(),   
             'user' => $user,
-            'playstyle' => $playstyle,
+            'playstyle' => $this->playstyle,
             'notices' => $notice,
         ]);
     }
     
     public function mypage()
     {
-        // dd(Auth::user()->status);
-        
-        
-        $playstyle = [
-            'ワイワイ楽しく',
-            '真剣に',
-            '気軽に',
-        ]; 
-        
+        // 自分への未読通知を取得
         $notice = Notice::where('user_id', Auth::user()->id)->where('seen', false)->get();
         
         return  view('mypage', [
             'auth' => Auth::user(),
-            'playstyle' => $playstyle,
+            'playstyle' => $this->playstyle,
             'notices' => $notice,
         ]);
     }
@@ -87,39 +75,37 @@ class HomeController extends Controller
     
     public function mypage_setting()
     {
-        $playstyle = [
-            'ワイワイ楽しく',
-            '真剣に',
-            '気軽に',
-        ];
-        
+        // 自分への未読通知を取得
         $notice = Notice::where('user_id', Auth::user()->id)->where('seen', false)->get();
         
         return  view('mypage_setting', [
             'auth' => Auth::user(),
             'games' => Game::all(),
-            'playstyle' => $playstyle,
+            'playstyle' => $this->playstyle,
             'notices' => $notice,
         ]);
     }
     
     public function set_status(Request $request)
     {
+        // ステータスのバリデーションを記述
         $validated = $request->validate([
             'name' => 'required|max:10', 
             'playwith' => 'required|max:255',
             'comment' => 'required|max:255'
         ]);
+        // リクエスト情報を置き換え
         $input = $request;
+        // ログイン者情報を取得
         $user = Auth::user();
-        
+        // 画像ファイルをストレージに保存・ファイルパスを保存
         if($input["file"] != NULL)
         {
-        $fileName = $input["file"]->getClientOriginalName();
-        Storage::putFileAs('public/images',  $input->file, $fileName);
-        $fullFilePath = '/storage/images/'. $fileName;
+            $fileName = $input["file"]->getClientOriginalName();
+            Storage::putFileAs('public/images',  $input->file, $fileName);
+            $fullFilePath = '/storage/images/'. $fileName;
         }
-        
+        // 各情報の変更
         $user->name = $validated['name'];
         $user->status->age = $input->age;
         $user->status->sex = $input->sex;
@@ -130,7 +116,7 @@ class HomeController extends Controller
         if($input["file"] != NULL) $user->status->img_url = $fullFilePath;
         $user->save();
         $user->status->save();
-        
+        // 初期ステータスを変更したかの判定(コメントを変更したか)
         $defaultText = "変更してください(変更しないと利用できません)";
         if($user->status->playwith == $defaultText || $user->status->comment == $defaultText || $user->status->playwith == NULL || $user->status->comment == NULL)
         {
@@ -145,7 +131,9 @@ class HomeController extends Controller
     
     public function noticed_all(Request $request)
     {
+        // 自分への未読通知を取得
         $notices = Notice::where('user_id', Auth::user()->id)->where('seen', false)->get();
+        // 各通知を既読に変更
         foreach($notices as $notice){
             $notice->seen = 1;
             $notice->save();
@@ -155,6 +143,7 @@ class HomeController extends Controller
     }
     
     public function noticed(Request $request){
+        // 指定された通知を既読に変更
         $notice = Notice::where('id', $request->id)->first();
         $notice->seen = 1;
         $notice->save();

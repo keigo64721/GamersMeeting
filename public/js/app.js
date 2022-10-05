@@ -5342,9 +5342,8 @@ __webpack_require__.r(__webpack_exports__);
         message: e.message.message,
         user: e.user,
         chatroomId: e.chatroomId
-      }); // this.pageScroll();
-
-    }); //   this.pageScroll();
+      });
+    });
   },
   updated: function updated() {
     this.pageScroll();
@@ -5372,12 +5371,6 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     pageScroll: function pageScroll() {
-      // let elm = document.getElementById('list');
-      // // let bottom = elm.scrollHeight;
-      // // console.log(elm.scrollHeight);
-      // elm.scrollIntoView(false);
-      // const obj = document.getElementById('list');
-      // obj.scrollTop = obj.scrollHeight;
       var obj = document.getElementById('list');
       console.log(obj.scrollHeight);
       obj.scrollTop = obj.scrollHeight;

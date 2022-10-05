@@ -10,8 +10,7 @@ use App\Models\Chatroom;
 use App\Models\Swipe;
 use App\Models\Notice;
 use App\Events\MessageSent;
-use Log;
- 
+
 class ChatsController extends Controller
 {
     public function __construct()
@@ -39,11 +38,11 @@ class ChatsController extends Controller
         
         // チャット相手のユーザー情報を取得
         $partner = ChatroomUser::where('chatroom_id', $roomId)->where('user_id', '<>', $auth->id)->first();
-        
-        // マッチしたユーザー一覧を取得
+        // 自分にLikeしたユーザーのスワイプ情報を取得
         $likedUserIds = Swipe::where('to_user_id', \Auth::user()->id)
                         ->where('is_like', true)
                         ->pluck('from_user_id');
+        // 以下自分とマッチングした人達の情報を取得
         $i = 0;
         $matchedUsers = null;
         foreach($likedUserIds as $likedUserId){
@@ -83,7 +82,7 @@ class ChatsController extends Controller
             
         }
         
-        //通知情報を取得
+        // 自分への未読通知を取得
         $notice = Notice::where('user_id', Auth::user()->id)->where('seen', false)->get();
         
         return view('chat', [
