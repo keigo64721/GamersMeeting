@@ -2,6 +2,7 @@
     font-size: 25px;
     padding: 10px;
     border-bottom: solid 1px;
+    background: #dddddd;
 }
 
 .message-name {
@@ -35,7 +36,7 @@ br {
 
 .ul-body {
     width: 800px;
-    height: 520px;
+    height: 500px;
     padding-top: 20px;
     overflow-y: scroll;
     overflow-x: hidden;
@@ -45,8 +46,13 @@ br {
     position: absolute;
     width: 800px;
     top: 655px;
-    background: grey;
+    /*background: #cccccc;*/
     border-top: solid 1px; 
+}
+
+.input-form-block {
+    width: 355px;
+    margin-left: 150px;
 }
 
 .input {

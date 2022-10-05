@@ -1,7 +1,5 @@
 <template>
     <div>
-        <!--<p>チャットルーム：{{ chatroomId }}</p>-->
-        <!--<p>ユーザーID：{{ userId }}</p>-->
         <div class="ul-body"　id="list">
             <div v-for="(message, key) in messages" :key="key" class="li-body">
                 <div v-if="userId === message.user.id" class="my-message">
@@ -15,8 +13,11 @@
             </div>
         </div>
         <div class="input-form">
-            <input class="input" v-model="text" />
-            <button @click="postMessage" :disabled="!textExists">送信</button>
+            <div class="input-form-block">
+                <input class="input" v-model="text" />
+                <button @click="postMessage" :disabled="!textExists">送信</button>
+                
+            </div>
         </div>
     </div>
 </template>
@@ -51,8 +52,12 @@ export default {
                 user: e.user,
                 chatroomId: e.chatroomId
             });
+            // this.pageScroll();
         });
-       this.pageSchroll();
+    //   this.pageScroll();
+    },
+    updated() {
+        this.pageScroll();
     },
     methods: {
         fetchMessages(chatroomId) {
@@ -67,14 +72,18 @@ export default {
             }).then(response => {
                 this.text = "";
             });
-            this.pageSchroll();
         },
         pageScroll(){
             // let elm = document.getElementById('list');
             // // let bottom = elm.scrollHeight;
             // // console.log(elm.scrollHeight);
             // elm.scrollIntoView(false);
+            
+            // const obj = document.getElementById('list');
+            // obj.scrollTop = obj.scrollHeight;
+            
             const obj = document.getElementById('list');
+            console.log(obj.scrollHeight);
             obj.scrollTop = obj.scrollHeight;
         }
     }
