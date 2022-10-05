@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
  
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 use App\Models\Status;
  
 class LineLoginController extends Controller

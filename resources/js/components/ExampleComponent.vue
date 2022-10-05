@@ -52,9 +52,7 @@ export default {
                 user: e.user,
                 chatroomId: e.chatroomId
             });
-            // this.pageScroll();
         });
-    //   this.pageScroll();
     },
     updated() {
         this.pageScroll();
@@ -74,14 +72,6 @@ export default {
             });
         },
         pageScroll(){
-            // let elm = document.getElementById('list');
-            // // let bottom = elm.scrollHeight;
-            // // console.log(elm.scrollHeight);
-            // elm.scrollIntoView(false);
-            
-            // const obj = document.getElementById('list');
-            // obj.scrollTop = obj.scrollHeight;
-            
             const obj = document.getElementById('list');
             console.log(obj.scrollHeight);
             obj.scrollTop = obj.scrollHeight;

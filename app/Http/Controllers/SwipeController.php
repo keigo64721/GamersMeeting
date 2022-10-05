@@ -16,14 +16,16 @@ class SwipeController extends Controller
     
     public function store(Request $request)
     {
+        // ログイン者情報を取得
         $auth = Auth::user();
-        
+        // 自分に対してスワイプした人の情報を取得
         $toUser = Swipe::where('from_user_id', $request->input('to_user_id'))
                     ->where('to_user_id', \Auth::user()->id)
                     ->first();
-        
+        // マッチングが成立した際の処理
         if($toUser != NULL){
             if($toUser->is_like == true && $request->input('is_like') == true){
+                // 通知をNoticeテーブルに追加
                 Notice::create([
                     'user_id' =>  \Auth::user()->id,
                     'message' => $toUser->fromUser->name."さんとマッチしました！",
@@ -34,6 +36,7 @@ class SwipeController extends Controller
                     'message' => \Auth::user()->name."さんとマッチしました！",
                     'seen' => false,
                 ]);
+                // チャットルームを新規作成
                 $room = Chatroom::create();
                 ChatroomUser::create([
                     'user_id' => $request->input('to_user_id'),
@@ -45,7 +48,7 @@ class SwipeController extends Controller
                 ]);
             }
         }
-        
+        // スワイプ情報を追加
         Swipe::create([
             'from_user_id' => \Auth::user()->id,
             'to_user_id' => $request->input('to_user_id'),
@@ -57,15 +60,16 @@ class SwipeController extends Controller
     
     public function match()
     {
+        // ログイン者情報を取得
         $auth = Auth::user();
-        
+        // 自分にLikeしたユーザーのスワイプ情報を取得
         $likedUserIds = Swipe::where('to_user_id', \Auth::user()->id)
                         ->where('is_like', true)
                         ->pluck('from_user_id');
-        
+                        
+        // 以下自分とマッチングした人達の情報を取得
         $i = 0;
         $matchedUsers = NULL;
-        
         foreach($likedUserIds as $likedUserId){
             $matchedUser = Swipe::where('from_user_id', \Auth::user()->id)
                             ->where('to_user_id', $likedUserId)
@@ -76,10 +80,10 @@ class SwipeController extends Controller
                 $i++;
             }
         }
-        
+        // 自分への未読通知を取得
         $notice = Notice::where('user_id', Auth::user()->id)->where('seen', false)->get();
         
-        // $matchedUsersごとの最新メッセージを取得
+        // $matchedUsersごとの最新メッセージを取得(配列の添え字を)
         $i = 0;
         foreach($matchedUsers as $matchedUser){
             $chatroomIds = ChatroomUser::where('user_id', $matchedUser->toUser->id)->pluck('chatroom_id');
@@ -93,7 +97,6 @@ class SwipeController extends Controller
                     break;
                 }
             }
-            
             if($tenporalyRoomId === null){
                 $matchedUserMessages[$i] = null;
                 $i++;

@@ -39,6 +39,7 @@ class MessageSent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
+        // チャンネル名は”chat.ルーム”
         return new PrivateChannel('chat.'.$this->chatroomId);
     }
 }
