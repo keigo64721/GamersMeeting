@@ -5342,9 +5342,12 @@ __webpack_require__.r(__webpack_exports__);
         message: e.message.message,
         user: e.user,
         chatroomId: e.chatroomId
-      });
-    });
-    this.pageSchroll();
+      }); // this.pageScroll();
+
+    }); //   this.pageScroll();
+  },
+  updated: function updated() {
+    this.pageScroll();
   },
   methods: {
     fetchMessages: function fetchMessages(chatroomId) {
@@ -5367,14 +5370,16 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         _this3.text = "";
       });
-      this.pageSchroll();
     },
     pageScroll: function pageScroll() {
       // let elm = document.getElementById('list');
       // // let bottom = elm.scrollHeight;
       // // console.log(elm.scrollHeight);
       // elm.scrollIntoView(false);
+      // const obj = document.getElementById('list');
+      // obj.scrollTop = obj.scrollHeight;
       var obj = document.getElementById('list');
+      console.log(obj.scrollHeight);
       obj.scrollTop = obj.scrollHeight;
     }
   }
@@ -5422,6 +5427,8 @@ var render = function render() {
     }, [_vm._v(_vm._s(message.user.name))]), _c("br")]) : _vm._e()]);
   }), 0), _vm._v(" "), _c("div", {
     staticClass: "input-form"
+  }, [_c("div", {
+    staticClass: "input-form-block"
   }, [_c("input", {
     directives: [{
       name: "model",
@@ -5446,7 +5453,7 @@ var render = function render() {
     on: {
       click: _vm.postMessage
     }
-  }, [_vm._v("送信")])])]);
+  }, [_vm._v("送信")])])])]);
 };
 
 var staticRenderFns = [];

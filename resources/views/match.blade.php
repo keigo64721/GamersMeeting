@@ -42,32 +42,6 @@
                 <p>マッチングしたユーザーはいません</p>
             </div>
             @endif
-            <!----test---->
-            <div class="user-block">
-                <p>a</p>
-            </div>
-            <div class="user-block">
-                <p>a</p>
-            </div>
-            <div class="user-block">
-                <p>a</p>
-            </div>
-            <div class="user-block">
-                <p>a</p>
-            </div>
-            <div class="user-block">
-                <p>a</p>
-            </div>
-            <div class="user-block">
-                <p>a</p>
-            </div>
-            <div class="user-block">
-                <p>a</p>
-            </div>
-            <div class="user-block">
-                <p>a</p>
-            </div>
-            <!----test---->
         </div>
         <div class="right-side">
             
