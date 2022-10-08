@@ -68,12 +68,25 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         
-         return User::create([
+         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
         
+        Status::create([
+            'user_id' => $user->id,
+            'age' => 1,
+            'sex' => "未選択",
+            'game_id' => 1,
+            'playstyle' => 0,
+            'playwith' => "変更してください(変更しないと利用できません)",
+            'comment' => "変更してください(変更しないと利用できません)",
+            'img_url' => "/img/18448.jpg",
+            'set' => 0,    
+        ]);
+        
+        return $user;
         
     }
 }

@@ -85,29 +85,32 @@ class SwipeController extends Controller
         
         // $matchedUsersごとの最新メッセージを取得(配列の添え字を)
         $i = 0;
-        foreach($matchedUsers as $matchedUser){
-            $chatroomIds = ChatroomUser::where('user_id', $matchedUser->toUser->id)->pluck('chatroom_id');
-            $chatroom = null;
-            $tenporalyRoomId = null;
-            foreach($chatroomIds as $id){
-                $chatroom = ChatroomUser::where('chatroom_id', $id)->where('user_id', $auth->id)
-                                                                   ->first();
-                if ($chatroom != null){
-                    $tenporalyRoomId = $chatroom->chatroom_id;
-                    break;
+        $matchedUserMessages=NULL;
+        if($matchedUsers !== NULL){
+            foreach($matchedUsers as $matchedUser){
+                $chatroomIds = ChatroomUser::where('user_id', $matchedUser->toUser->id)->pluck('chatroom_id');
+                $chatroom = null;
+                $tenporalyRoomId = null;
+                foreach($chatroomIds as $id){
+                    $chatroom = ChatroomUser::where('chatroom_id', $id)->where('user_id', $auth->id)
+                                                                       ->first();
+                    if ($chatroom != null){
+                        $tenporalyRoomId = $chatroom->chatroom_id;
+                        break;
+                    }
                 }
+                if($tenporalyRoomId === null){
+                    $matchedUserMessages[$i] = null;
+                    $i++;
+                }else{
+                    $max = ChatroomMessage::where('chatroom_id', $tenporalyRoomId)->max('id');
+                    $matchedUserMessages[$i] = ChatroomMessage::where('chatroom_id', $tenporalyRoomId)
+                                              ->where('id', $max)
+                                              ->first();
+                    $i++;
+                }
+                
             }
-            if($tenporalyRoomId === null){
-                $matchedUserMessages[$i] = null;
-                $i++;
-            }else{
-                $max = ChatroomMessage::where('chatroom_id', $tenporalyRoomId)->max('id');
-                $matchedUserMessages[$i] = ChatroomMessage::where('chatroom_id', $tenporalyRoomId)
-                                          ->where('id', $max)
-                                          ->first();
-                $i++;
-            }
-            
         }
         
         return view('match', [

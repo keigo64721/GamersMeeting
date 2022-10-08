@@ -9,6 +9,18 @@ class Status extends Model
 {
     use HasFactory;
     
+    protected $fillable = [
+        'user_id',
+        'age',
+        'sex' ,
+        'game_id' ,
+        'playstyle' ,
+        'playwith',
+        'comment',
+        'img_url',
+        'set',
+    ];
+    
     public function user()
     {
         return $this->belongsTo('App\Models\User');
