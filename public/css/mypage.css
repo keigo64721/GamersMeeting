@@ -39,6 +39,7 @@
 
 
 .text-playwith, .text-comment {
+    overflow-y: scroll;
     width: 300px;
     height: 100px;
     border: 1px solid;
