@@ -39,15 +39,15 @@ ___
  
 # Requirement
  
-php ^7.2.5|~8.0
-doctrine/dbal ^3.4
-fruitcake/laravel-cors ^2.0
-guzzlehttp/guzzle ^7.0.1
-laravel/framework ^8.75
-laravel/sanctum ^2.11
-laravel/tinker ^2.5
-pusher/pusher-php-server ^7.0
-laravel/ui 3.*
+php ^7.2.5|~8.0   
+doctrine/dbal ^3.4   
+fruitcake/laravel-cors ^2.0   
+guzzlehttp/guzzle ^7.0.1   
+laravel/framework ^8.75   
+laravel/sanctum ^2.11   
+laravel/tinker ^2.5   
+pusher/pusher-php-server ^7.0   
+laravel/ui 3.*   
  
 # Installation
  
