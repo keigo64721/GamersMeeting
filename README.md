@@ -67,5 +67,5 @@ pip install huga_package
 * E-mail: k5k5.azw64@gmail.com
  
 # License
-ライセンスを明示する
+"GamersMeeting" is under [MIT liicense]([https://www.google.co.jp/](https://en.wikipedia.org/wiki/MIT_License))
  
