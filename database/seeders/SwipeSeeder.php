@@ -14,10 +14,10 @@ class SwipeSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 1; $i <= 50; $i++){
+        for ($i = 2; $i <= 50; $i++){
             DB::table('swipes')->insert([
                 'from_user_id' => $i,
-                'to_user_id' => 51,
+                'to_user_id' => 1,
                 'is_like' => true,
             ]);
         }
