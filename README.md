@@ -11,7 +11,8 @@
 email:demo@a.com   
 password: 11111111     
    
-にてログインください   
+にてログインください
+デモとしてランダムデータを50人分追加しています。
 ___
    登録画面(メールアドレスかLINEログインのどちらかで登録できる) 
 ![sample5](https://user-images.githubusercontent.com/105817239/193942001-0429a632-3108-40e3-beab-3f559c0a1a9d.png)   
@@ -38,10 +39,15 @@ ___
  
 # Requirement
  
-"hoge"を動かすのに必要なライブラリなどを列挙する
- 
-* huga 3.5.2
-* hogehuga 1.0.2
+php ^7.2.5|~8.0
+doctrine/dbal ^3.4
+fruitcake/laravel-cors ^2.0
+guzzlehttp/guzzle ^7.0.1
+laravel/framework ^8.75
+laravel/sanctum ^2.11
+laravel/tinker ^2.5
+pusher/pusher-php-server ^7.0
+laravel/ui 3.*
  
 # Installation
  
@@ -49,16 +55,6 @@ Requirementで列挙したライブラリなどのインストール方法を説
  
 ```bash
 pip install huga_package
-```
- 
-# Usage
- 
-DEMOの実行方法など、"hoge"の基本的な使い方を説明する
- 
-```bash
-git clone https://github.com/hoge/~
-cd examples
-python demo.py
 ```
  
 # Note
