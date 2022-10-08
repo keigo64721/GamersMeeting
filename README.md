@@ -8,7 +8,7 @@
 # DEMO
 お試しの際は｛こちら｝より   
    
-email:a@a.com    
+email:demo@a.com   
 password: 11111111     
    
 にてログインください   
