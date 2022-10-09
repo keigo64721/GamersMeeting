@@ -6,7 +6,7 @@
 お互いにGoodを選択した人同士でマッチングした後にはチャットで連絡を取ることも可能.  
   
 # DEMO
-お試しの際は｛こちら｝より   
+お試しの際は[こちら](https://quiet-brook-84844.herokuapp.com/)より   
    
 email:demo@a.com   
 password: 11111111     
