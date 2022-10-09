@@ -89,7 +89,7 @@ LINE_REDIRECT=<LineLoginAPIのコールバックURL> #https://ドメイン/callb
 ```bash
 php artisan key:generate
 ```
-
+マイグレーションを実行
 ```bash
 #通常のマイグレーション
 php artisan migrate
