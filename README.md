@@ -12,7 +12,7 @@ email:demo@a.com
 password: 11111111     
    
 にてログインください   
-デモとしてランダムデータを50人分追加しています。
+デモとしてランダムデータを50人分追加しています。既にGoodされているのですぐにマッチングできます。
 ___
    登録画面(メールアドレスかLINEログインのどちらかで登録できる) 
 ![sample5](https://user-images.githubusercontent.com/105817239/193942001-0429a632-3108-40e3-beab-3f559c0a1a9d.png)   
@@ -51,12 +51,63 @@ laravel/ui 3.*
  
 # Installation
  
-Requirementで列挙したライブラリなどのインストール方法を説明する
- 
+GitHubからファイルをクローン
 ```bash
-pip install huga_package
+https://github.com/keigo64721/GamersMeeting.git
 ```
- 
+venderファイルとcomposer.lockを作成
+```bash
+cd GamersMeeting/
+composer install
+```
+.envファイルを作成
+```bash
+cp .env.example .env
+```
+.envファイル内の項目を変更してデータベースを有効化
+```bash
+DB_DATABASE=<使用するデータベース名>
+DB_USERNAME=<ユーザーの名前>
+DB_PASSWORD=<データベースのパスワード>
+```   
+.envファイル内の項目を変更してpusherを有効化(pusherのApp Keysを設定)
+```bash
+BROADCAST_DRIVER=pusher
+
+PUSHER_APP_ID=<App Keysのapp_id>
+PUSHER_APP_KEY=<App Keysのkey>
+PUSHER_APP_SECRET=<App Keysのsecret>
+PUSHER_APP_CLUSTER=<App Keysのcluster>
+```
+.envファイル内の項目を追加してLineLogin機能を有効化(LineLoginAPI)
+```bash
+LINE_CHANNEL_ID=<LineLoginAPIのチャンネルID>
+LINE_CHANNEL_SECRET=<LineLoginAPIのチャンネルシークレット>
+LINE_REDIRECT=<LineLoginAPIのコールバックURL> #https://ドメイン/callbackの形
+```
+アプリケーションキーを作成
+```bash
+php artisan key:generate
+```
+
+```bash
+#通常のマイグレーション
+php artisan migrate
+
+#シーダーも行うマイグレーション
+php artisan migrate --seed
+```
+ストレージをリンク
+```bash
+php artisan storage:link
+```
+
+# Usage
+起動する
+```bash
+php artisan serve --port=8080
+```
+
 # Note
  現在作成中のアプリケーションのため、不具合を見つけた際には下記の連絡先までご連絡ください
  
