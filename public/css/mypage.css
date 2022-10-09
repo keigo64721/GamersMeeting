@@ -38,11 +38,11 @@
 
 .text-playwith, .text-comment {
     overflow-y: scroll;
-    overflow-x: hidden;
+    overflow-x: hidden;/*変更*/
     width: 300px;
     height: 100px;
     border: 1px solid;
 	border-color: #000000;
-	overflow-wrap: break-word;
-　　word-wrap: break-word;
+	overflow-wrap: break-word;/*変更*/
+　　word-wrap: break-word;/*変更*/
 }
