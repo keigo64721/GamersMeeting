@@ -101,9 +101,10 @@ class HomeController extends Controller
         // 画像ファイルをストレージに保存・ファイルパスを保存
         if($input["file"] != NULL)
         {
-            $fileName = $input["file"]->getClientOriginalName();
-            Storage::putFileAs('public/images',  $input->file, $fileName);
-            $fullFilePath = '/storage/images/'. $fileName;
+            $image = $request->file('file');
+            $path = Storage::disk('s3')->putFile('myprefix', $image, 'public');
+            $fullFilePath = Storage::disk('s3')->url($path);
+            
         }
         // 各情報の変更
         $user->name = $validated['name'];
