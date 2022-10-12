@@ -12,8 +12,9 @@
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
-        "pusher/pusher-php-server": "^7.0",
-        "laravel/ui": "3.*"
+        "laravel/ui": "3.*",
+        "league/flysystem-aws-s3-v3": "~1.0",
+        "pusher/pusher-php-server": "^7.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
