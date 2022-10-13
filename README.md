@@ -22,6 +22,17 @@ ___
 ![sample2](https://user-images.githubusercontent.com/105817239/193941992-bc95440b-d98e-4c92-9ba7-d3b6717dff78.png)   
    プロフィール設定画面(各プロフィールやマッチしたいゲームを選択・変更できる)   
 ![sample4](https://user-images.githubusercontent.com/105817239/193941994-44859e61-bb90-4ebb-9f18-d27dfa3f7fef.png)   
+   ER図   
+   ![サイトマップ drawio - diagrams net - Google Chrome 2022_10_13 16_06_09](https://user-images.githubusercontent.com/105817239/195526048-70e54769-2001-4225-8b08-8892c4e0a4a0.png)
+   - Usersテーブル：ユーザーのログイン情報を保存するテーブル
+   - Statusesテーブル：ユーザーがマッチングする際のプロフィールを保存するテーブル
+   - Noticesテーブル：ユーザーへの通知メッセージを保存するテーブル
+   - Gamesテーブル：ゲーム情報を保存するテーブル
+   - Swipesテーブル：ユーザーからユーザーへのGood・Badを保存するテーブル
+   - Chatroomsテーブル：チャットルームのIDを保存するテーブル
+   - ChatroomUsersテーブル：チャットルームに属するユーザーのIDを保存するテーブル
+   - ChatoroomMessagesテーブル：チャットルームにあるメッセージを保存するテーブル
+
  
 # Futures
 - マッチング機能
@@ -31,7 +42,7 @@ ___
 - 通知機能
  
 # Future features
-- [ ] 管理者ページの追加(新ゲームの追加などを行う)
+- [ ] .envファイル内の項目を追加してLineLogin機能を有効化（LineLoginAPI）理者ページの追加(新ゲームの追加などを行う)
 - [ ] ゲーム別プロフィールの設定
 - [ ] マッチング通知をLINEに通知
 - [ ] チャット機能の強化(画像やファイルなどを送れるようにする)
@@ -47,6 +58,7 @@ laravel/framework ^8.75
 laravel/sanctum ^2.11   
 laravel/tinker ^2.5   
 pusher/pusher-php-server ^7.0   
+league/flysystem-aws-s3-v3 ~1.0   
 laravel/ui 3.*   
  
 # Installation
@@ -84,6 +96,14 @@ PUSHER_APP_CLUSTER=<App Keysのcluster>
 LINE_CHANNEL_ID=<LineLoginAPIのチャンネルID>
 LINE_CHANNEL_SECRET=<LineLoginAPIのチャンネルシークレット>
 LINE_REDIRECT=<LineLoginAPIのコールバックURL> #https://ドメイン/callbackの形
+```   
+
+.envファイル内の項目を変更してAmazonS3を有効化
+```bash
+AWS_ACCESS_KEY_ID=<自身のAWSアクセスキー>
+AWS_SECRET_ACCESS_KEY=<自身のAWSシークレットキー>
+AWS_DEFAULT_REGION=<自身のAWS S3のリージョン>
+AWS_BUCKET=<自身のAWS S3のバケット名>
 ```
 アプリケーションキーを作成
 ```bash
