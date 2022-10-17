@@ -1,0 +1,25 @@
+.main {
+    margin-left: 20px;    
+}
+
+.games {
+    width: 200px;
+}
+
+.game {
+    width: 250px;
+    display: flex;
+    height: 30px;
+    margin-top: 10px;
+}
+
+.btn {
+    margin-left: auto;
+}
+
+.input {
+    width: 250px;
+    display: flex;
+    height: 30px;
+    margin-top: 10px;
+}

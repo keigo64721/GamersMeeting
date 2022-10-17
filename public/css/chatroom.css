@@ -1,0 +1,69 @@
+.user-name {
+    font-size: 25px;
+    padding: 10px;
+    border-bottom: solid 1px;
+    background: #dddddd;
+}
+
+.message-name {
+    font-size: 10px;
+    display: inline-block;
+}
+
+.message-body {
+    max-width: 200px;
+    border: solid 1px;
+    border-radius: 20%;
+    padding: 10px;
+    display: inline-block;
+    overflow-wrap: break-word;
+　　word-wrap: break-word;
+    
+}
+
+.mine {
+    float: right;
+}
+
+br {
+    clear: right;
+}
+
+
+.li-body {
+    width: 800px;
+}
+
+.ul-body {
+    width: 800px;
+    height: 500px;
+    padding-top: 20px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.input-form {
+    position: absolute;
+    width: 800px;
+    top: 655px;
+    border-top: solid 1px; 
+}
+
+.input-form-block {
+    width: 355px;
+    margin-left: 150px;
+}
+
+.input {
+    width: 300px;
+}
+
+.my-message {
+    width: 780px;
+    
+}
+
+.other-message {
+    width: 780px;
+    margin-left: 20px;
+}

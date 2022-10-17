@@ -117,6 +117,11 @@
                                     <!--マイページボタン-->
                                     <a class="dropdown-item" href="{{ url('/mypage') }}" >マイページ</a>
                                     
+                                    <!--管理者画面-->
+                                    @if($auth->admin == 1)
+                                    <a class="dropdown-item" href="{{ url('/admin') }}" >管理者</a>
+                                    @endif
+                                    
                                     <!--設定ボタン（設定項目を増やしたら追加する予定）-->
                                     <!--<a class="dropdown-item" href="{{ url('/setting') }}" >設定</a>-->
                                     

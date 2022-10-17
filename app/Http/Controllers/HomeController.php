@@ -151,4 +151,33 @@ class HomeController extends Controller
         
         return redirect(route('matching'));
     }
+    
+    public function admin()
+    {
+        // 自分への未読通知を取得
+        $notice = Notice::where('user_id', Auth::user()->id)->where('seen', false)->get();
+        
+        return  view('admin', [
+            'auth' => Auth::user(),
+            'playstyle' => $this->playstyle,
+            'notices' => $notice,
+            'games' => Game::all(),
+        ]);
+    }
+    
+    public function add_game(Request $request)
+    {
+        // 新規ゲームをテーブルに追加
+        Game::create([
+            'name' =>  $request->gameName,   
+        ]);
+        return redirect(route('admin'));
+    }
+    
+    public function delete_game(Request $request)
+    {
+        // 指定のゲームを選び削除
+        Game::find($request->gameId)->forceDelete();
+        return redirect(route('admin'));
+    }
 }

@@ -33,8 +33,11 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('noticedall', [App\Http\Controllers\HomeController::class, 'noticed_all'])->name('noticed.all');
     Route::post('noticed', [App\Http\Controllers\HomeController::class, 'noticed'])->name('noticed');
     Route::post('messages', [App\Http\Controllers\ChatsController::class, 'sendMessage']);
+    Route::get('admin', [App\Http\Controllers\HomeController::class, 'admin'])->name('admin');
+    Route::post('gameadd', [App\Http\Controllers\HomeController::class, 'add_game'])->name('admin.gameadd');
+    Route::post('gamedelete', [App\Http\Controllers\HomeController::class, 'delete_game'])->name('admin.gamedelete');
 });
 
 //Lineログイン時のルーティング
-Route::get('/linelogin', 'LineLoginController@lineLogin')->name('linelogin');
-Route::get('/callback', 'LineLoginController@callback')->name('callback');
+Route::get('/linelogin', [App\Http\Controllers\LineLoginController::class, 'lineLogin'])->name('linelogin');
+Route::get('/callback', [App\Http\Controllers\LineLoginController::class, 'callback'])->name('callback');
