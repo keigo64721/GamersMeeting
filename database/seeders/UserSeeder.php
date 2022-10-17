@@ -22,13 +22,19 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('11111111'),
             ]);
             
-        for ($i = 2; $i <= 50; $i++){
+            
+        for ($i = 2; $i <= 49; $i++){
             DB::table('users')->insert([
                 'name' => Str::random(10),
                 'email' => Str::random(10).'@gmail.com',
                 'password' => Hash::make(Str::random(10)),
             ]);
-            
         }
+        DB::table('users')->insert([
+                'name' => 'admin',
+                'email' => 'admin@a.com',
+                'admin' => 1,
+                'password' => Hash::make('11111111'),
+            ]);
     }
 }

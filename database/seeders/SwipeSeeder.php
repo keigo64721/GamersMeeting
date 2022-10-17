@@ -14,7 +14,7 @@ class SwipeSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 2; $i <= 50; $i++){
+        for ($i = 2; $i <= 49; $i++){
             DB::table('swipes')->insert([
                 'from_user_id' => $i,
                 'to_user_id' => 1,

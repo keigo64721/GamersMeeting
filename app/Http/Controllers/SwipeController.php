@@ -114,6 +114,7 @@ class SwipeController extends Controller
         }
         
         return view('match', [
+            'auth' => $auth,
             'matchedUsers' => $matchedUsers,  
             'matchedUserMessages' => $matchedUserMessages,
             'notices' => $notice,
