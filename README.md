@@ -6,13 +6,17 @@
 お互いにGoodを選択した人同士でマッチングした後にはチャットで連絡を取ることも可能.  
   
 # DEMO
-お試しの際は[こちら](https://quiet-brook-84844.herokuapp.com/)より   
-   
+お試しの際は[こちら](https://quiet-brook-84844.herokuapp.com/)より  
+
+・demoアカウント(ランダムに用意したアカウントからGoodされています)   
 email:demo@a.com   
 password: 11111111     
+・管理者アカウント(ゲームの追加ができます)   
+email:admin@a.com   
+password: 11111111 
    
 にてログインください   
-デモとしてランダムデータを50人分追加しています。既にGoodされているのですぐにマッチングできます。
+デモとしてランダムデータを50人分追加しています。
 ___
    登録画面(メールアドレスかLINEログインのどちらかで登録できる) 
 ![sample5](https://user-images.githubusercontent.com/105817239/193942001-0429a632-3108-40e3-beab-3f559c0a1a9d.png)   
