@@ -16,7 +16,6 @@
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
                             
-                            <a class="line" href="{{route('linelogin')}}"><img class="line-img" src="img/btn_login_base.png"></a>
                             
                             <div class="row mb-3">
                                 <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
@@ -59,18 +58,35 @@
                             </div>
     
                             <div class="row mb-0">
-                                <div class="col-md-8 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Login') }}
-                                    </button>
-    
+                                <div class="col-md-8 offset-md-6">
                                     @if (Route::has('password.request'))
                                         <a class="btn btn-link" href="{{ route('password.request') }}">
                                             {{ __('Forgot Your Password?') }}
                                         </a>
                                     @endif
+                                    <button type="submit" class="btn btn-Dark">
+                                        {{ __('Login') }}
+                                    </button>
+    
                                 </div>
                             </div>
+                            
+                            <div class="styleline"><br></div>
+                            <p class="text1">ソーシャル・ログイン</p>
+                            <a class="line" href="{{route('linelogin')}}"><img class="line-img" src="img/btn_login_base.png"></a>
+                            <style>
+                               .line-img {
+                                   width: 200px;
+                                   height: 55px;
+                                   margin-bottom: 20px;
+                               }
+                               .line {
+                                   margin-left: 202px;
+                                   margin-right: 202px;
+                               }
+                            </style>
+                            <p class="text2"><br>本ウェブサービスでは、LINEによる認証ページで許可を得た場合のみメールアドレスを取得します。<br>
+                            そして、取得されたメールアドレスにつきましては本サービスのログイン以外の目的には一切使用いたしません。</p>
                         </form>
                     </div>
                 </div>

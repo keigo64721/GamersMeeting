@@ -2,8 +2,21 @@
    width: 200px;
    height: 55px;
    margin-bottom: 20px;
+   margin-top : 20px;
 }
 .line {
     margin-left: 202px;
     margin-right: 202px;
+}
+
+.styleline {
+    border-bottom: 1px solid #aaaaaa;
+}
+
+.text1 {
+    font-size: 16px;
+}
+
+.text2 {
+    font-size: 14px;
 }
