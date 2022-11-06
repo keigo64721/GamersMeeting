@@ -71,8 +71,8 @@
                                 </div>
                             </div>
                             
-                            <div class="styleline"><br></div>
-                            <p class="text1">ソーシャル・ログイン</p>
+                           <div class="border-bottom"><br></div>
+                            <p style="font-size: 16px;">ソーシャル・ログイン</p>
                             <a class="line" href="{{route('linelogin')}}"><img class="line-img" src="img/btn_login_base.png"></a>
                             <style>
                                .line-img {
@@ -85,7 +85,7 @@
                                    margin-right: 202px;
                                }
                             </style>
-                            <p class="text2"><br>本ウェブサービスでは、LINEによる認証ページで許可を得た場合のみメールアドレスを取得します。<br>
+                            <p style="font-size: 14px;"><br>本ウェブサービスでは、LINEによる認証ページで許可を得た場合のみメールアドレスを取得します。<br>
                             そして、取得されたメールアドレスにつきましては本サービスのログイン以外の目的には一切使用いたしません。</p>
                         </form>
                     </div>
